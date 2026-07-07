@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background: #00f0ff;
+  color: #080b12;
+}
+
+body {
+  font-feature-settings: "ss01";
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Terminal-style blinking cursor used in a few UI accents */
+.cursor::after {
+  content: "_";
+  animation: blink 1.1s step-start infinite;
+  color: #00f0ff;
+}
+
+/* Scanline sweep used on the hero + card hover */
+.scanline {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scanline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  animation: scan 3s linear infinite;
+  opacity: 0.6;
+}
+
+.card-border {
+  border: 1px solid #1e2837;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card-border:hover {
+  border-color: #0aa8b8;
+  box-shadow: 0 0 24px -4px rgba(0, 240, 255, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::before,
+  .cursor::after {
+    animation: none;
+  }
+}

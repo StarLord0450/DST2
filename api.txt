@@ -1,0 +1,15 @@
+# Supabase — Project Settings > API
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFheGVqeWxkaGhqY3lzdWFsdWl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzNTMzNzIsImV4cCI6MjA5ODkyOTM3Mn0.rqTXKf1de7GHBzoLV2c-PfjjRGxS2G8Uv3eJAp9SXt0
+SUPABASE_SERVICE_ROLE_KEY= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFheGVqeWxkaGhqY3lzdWFsdWl5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzM1MzM3MiwiZXhwIjoyMDk4OTI5MzcyfQ.xRjRwHUzvsqxCTOEbwt0uAyK-3tmtAOGBu_eyxrmYKs # SERVER ONLY — never expose to the browser
+
+# Stripe — Test mode keys from dashboard.stripe.com/test/apikeys
+STRIPE_SECRET_KEY=sk_test_xxxxxxxx
+STRIPE_WEBHOOK_SECRET=whsec_f978053455cd5736a455f66e856864bdb9a743f28284d83c8244be23ffabc2e3 # from `stripe listen` locally, or the webhook endpoint page in prod
+
+# Resend — resend.com/api-keys (leave blank to just log emails to the console in dev)
+RESEND_API_KEY=re_xxxxxxxx
+RESEND_FROM_EMAIL=orders@yourdomain.com
+
+# Used to build absolute URLs in the checkout API route
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
