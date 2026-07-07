@@ -49,18 +49,19 @@ async function handleOrderCreation(session: Stripe.Checkout.Session) {
     product_id: string;
     quantity: number;
   }[];
-  const { data: order, error: orderErr } = await supabase
-    .from("orders")
-    .insert({
-      user_id: userId,
-      customer_email: email,
-      stripe_session_id: session.id,
-      stripe_payment_intent: session.payment_intent as string,
-      status: "paid",
-      total_cents: session.amount_total ?? 0,
-      tracking_number: generateFakeTrackingNumber(),
-      shipping_address: shippingAddress,
-    })
+  const userId = session.metadata?.user_id || null;
+  const email = session.customer_details?.email ?? session.customer_email ?? "unknown@example.com";
+  const shippingAddress = session.customer_details?.address
+    ? {
+        name: session.customer_details?.name ?? null,
+        line1: session.customer_details.address.line1,
+        line2: session.customer_details.address.line2,
+        city: session.customer_details.address.city,
+        state: session.customer_details.address.state,
+        postal_code: session.customer_details.address.postal_code,
+        country: session.customer_details.address.country,
+      }
+    : null;
 
   const { data: products } = await supabase
     .from("products")
@@ -77,6 +78,7 @@ async function handleOrderCreation(session: Stripe.Checkout.Session) {
       status: "paid",
       total_cents: session.amount_total ?? 0,
       tracking_number: generateFakeTrackingNumber(),
+      shipping_address: shippingAddress,
     })
     .select()
     .single();
