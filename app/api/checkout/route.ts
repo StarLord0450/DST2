@@ -52,6 +52,9 @@ export async function POST(request: Request) {
     success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/checkout/cancel`,
     customer_email: user?.email,
+    shipping_address_collection: {
+      allowed_countries: ["US", "CA"],
+    },
     metadata: {
       user_id: user?.id ?? "",
       cart: JSON.stringify(
