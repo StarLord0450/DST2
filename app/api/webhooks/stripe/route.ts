@@ -77,7 +77,7 @@ async function handleOrderCreation(session: Stripe.Checkout.Session) {
   }
 
   const orderItems = cartMeta.map((item) => {
-    const product = products?.find((p) => p.id === item.product_id);
+    const product = products?.find((p: any) => p.id === item.product_id);
     return {
       order_id: order.id,
       product_id: item.product_id,
